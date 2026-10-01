@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        "edwinhuish.better-comments-next",
+        "dotenv.dotenv-vscode",
+        "editorconfig.editorconfig",
+        "oderwat.indent-rainbow",
+        "ms-toolsai.jupyter",
+        "christian-kohler.path-intellisense",
+        "alefragnani.project-manager",
+        "ms-python.python",
+        "charliermarsh.ruff",
+        "jgclark.vscode-todo-highlight",
+        "tombi-toml.tombi",
+        "eamodio.gitlens"
+    ]
+}

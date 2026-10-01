@@ -1,0 +1,38 @@
+[project]
+name = "hyper-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "ipykernel>=7.4.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.3",
+    "pandas>=3.0.6",
+    "python-dotenvx>=2.0.1",
+]
+
+[project.scripts]
+hyper-project = "hyper_project:main"
+
+[build-system]
+requires = ["uv_build>=0.12.10,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.9",
+]
+
+
+[tool.ruff.lint]
+# E: Pycodestyle errors
+# F: Pyflakes
+# I: isort (Import sorting)
+# B: Flake8-bugbear (Potential bugs)
+# UP: Pyupgrade (Upgrade syntax to newer Python versions)
+# N: Pep8-naming
+# RUF: ruff specific rules
+# SIM: simplify
+# PERF: performance
+extend-select = ["E", "F", "I", "B", "UP", "N", "RUF", "SIM", "PERF"]
