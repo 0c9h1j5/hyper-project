@@ -1,56 +1,24 @@
-class Movie:
-    def __init__(self, name = "odyssey", time = "day"):
-        self.name = name
-        self.time = time
-
-    def show_name(self):
-        print(self.name)
-
-    def show_time(self):
-        print(self.time)
+from .cinema import Cinema
 
 
-class Theater:
-    def __init__(self, name, type="normal"):
-        self.name = name
-        self.type = type
+def main():
+    while True:
+        is_quit = input("Do you want to quit? (y/n): ").strip().lower() == "y"
+        if is_quit:
+            break
 
-    def show_name(self):
-        print(self.name)
-
-    def room_type(self):
-        print(self.type)
-
-    def ticket(self):
-        pass
+        _ = make_sample_data()
 
 
-class Ticket(Movie, Theater):
-    """
-    상영관
-    좌석
-    종류: 일반/VIP
-    """
-    pass
+def make_sample_data():
+    sample_data = Cinema(
+        movies=["Movie 1", "Movie 2"],
+        customers=["철수", "영희"],
+        theaters={"일반": 100, "VIP관": 150},
+        reservations=[],
+    )
+    return sample_data
 
 
-class Person(Movie, Theater):
-    def __init__(self):
-        pass
-
-
-odyssey = Movie("odyssey")
-iliad = Movie("iliad")
-homer = Movie("homer")
-
-odyssey.show_name()
-iliad.show_name()
-homer.show_name()
-
-print("-" * 40)
-
-t1 = Theater("상영관 1", "일반")
-t2 = Theater("상영관 2", "VIP")
-
-t1.room_type()
-t2.room_type()
+if __name__ == "__main__":
+    main()
