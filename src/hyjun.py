@@ -4,6 +4,7 @@
 
 # ===== 클래스 밖 함수 =====
 
+
 def input_number(message):
     """숫자를 입력받아 돌려준다. 숫자가 아니면 다시 입력받는다."""
     while True:
@@ -53,14 +54,21 @@ def make_sample_data():
 
     # 시연용으로 미리 예약된 좌석 하나
     cinema.theaters[1].reserve("주간", 2)
-    cinema.reservations.append({
-        "관객": "영희", "영화": "오디세이", "시간": "주간",
-        "상영관": "1관", "좌석": 2, "가격": 10000,
-    })
+    cinema.reservations.append(
+        {
+            "관객": "영희",
+            "영화": "오디세이",
+            "시간": "주간",
+            "상영관": "1관",
+            "좌석": 2,
+            "가격": 10000,
+        }
+    )
     return cinema
 
 
 # ===== 클래스 =====
+
 
 class Theater:
     """상영관 (부모 클래스)"""
@@ -73,7 +81,7 @@ class Theater:
             "주간": ["빈자리", "빈자리", "빈자리", "빈자리"],
             "야간": ["빈자리", "빈자리", "빈자리", "빈자리"],
         }
-        self._price = 0          # 밖에서 직접 바꾸지 않는 값 (캡슐화)
+        self._price = 0  # 밖에서 직접 바꾸지 않는 값 (캡슐화)
         self.set_price(price)
 
     def set_price(self, price):
@@ -111,28 +119,40 @@ class Theater:
 class NormalTheater(Theater):
     """일반관: 기본 가격 그대로"""
 
+    def __init__(self, number, movie, price):
+        super().__init__(number, movie, price)
+        # TODO:
+
     def __str__(self):
-        return f"[일반] {self.number}관 - {self.movie} ({format_price(self.get_price())})"
+        return (
+            f"[일반] {self.number}관 - {self.movie} ({format_price(self.get_price())})"
+        )
 
 
 class VIPTheater(Theater):
     """VIP관: 기본 가격 + 5,000원"""
 
-    def get_price(self):                 # 부모 메서드를 다르게 동작 (오버라이딩)
+    def __init__(self, number, movie, price):
+        super().__init__(number, movie, price)
+        # TODO:
+
+    def get_price(self):  # 부모 메서드를 다르게 동작 (오버라이딩)
         return self._price + 5000
 
     def __str__(self):
-        return f"[VIP] {self.number}관 - {self.movie} ({format_price(self.get_price())})"
+        return (
+            f"[VIP] {self.number}관 - {self.movie} ({format_price(self.get_price())})"
+        )
 
 
 class Cinema:
     """영화관: 영화, 관객, 상영관, 예매 내역을 모두 관리"""
 
     def __init__(self):
-        self.movies = []          # 영화 이름 리스트
-        self.customers = []       # 관객 이름 리스트
-        self.theaters = {}        # {관 번호: Theater 객체}
-        self.reservations = []    # 예매 1건 = 딕셔너리
+        self.movies = []  # 영화 이름 리스트
+        self.customers = []  # 관객 이름 리스트
+        self.theaters = {}  # {관 번호: Theater 객체}
+        self.reservations = []  # 예매 1건 = 딕셔너리
 
     def find_theater(self, movie, kind):
         """영화와 상영관 종류(일반관/VIP관)에 맞는 상영관을 찾는다."""
@@ -170,12 +190,20 @@ class Cinema:
 
         theater.reserve(time, seat)
         price = theater.get_price()
-        self.reservations.append({
-            "관객": customer, "영화": movie, "시간": time,
-            "상영관": f"{theater.number}관", "좌석": seat, "가격": price,
-        })
-        print(f"\n예매 완료! {customer} / {movie} / {time} / "
-              f"{theater.number}관 {seat}번 / {format_price(price)}")
+        self.reservations.append(
+            {
+                "관객": customer,
+                "영화": movie,
+                "시간": time,
+                "상영관": f"{theater.number}관",
+                "좌석": seat,
+                "가격": price,
+            }
+        )
+        print(
+            f"\n예매 완료! {customer} / {movie} / {time} / "
+            f"{theater.number}관 {seat}번 / {format_price(price)}"
+        )
 
     def show_reservations(self):
         if len(self.reservations) == 0:
@@ -183,18 +211,23 @@ class Cinema:
             return
         print("\n--- 예매 내역 ---")
         for r in self.reservations:
-            print(f"{r['관객']} / {r['영화']} / {r['시간']} / "
-                  f"{r['상영관']} {r['좌석']}번 / {format_price(r['가격'])}")
+            print(
+                f"{r['관객']} / {r['영화']} / {r['시간']} / "
+                f"{r['상영관']} {r['좌석']}번 / {format_price(r['가격'])}"
+            )
 
     def __str__(self):
         total = 0
         for r in self.reservations:
             total += r["가격"]
-        return (f"영화 {len(self.movies)}편, 상영관 {len(self.theaters)}개, "
-                f"예매 {len(self.reservations)}건, 총매출 {format_price(total)}")
+        return (
+            f"영화 {len(self.movies)}편, 상영관 {len(self.theaters)}개, "
+            f"예매 {len(self.reservations)}건, 총매출 {format_price(total)}"
+        )
 
 
 # ===== 실행 =====
+
 
 def main():
     cinema = make_sample_data()
