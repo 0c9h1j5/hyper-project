@@ -11,6 +11,8 @@
         "charliermarsh.ruff",
         "jgclark.vscode-todo-highlight",
         "tombi-toml.tombi",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "openai.chatgpt",
+        "anthropic.claude-code"
     ]
 }
