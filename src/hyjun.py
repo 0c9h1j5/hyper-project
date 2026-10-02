@@ -4,6 +4,7 @@
 
 # ===== 클래스 밖 함수 =====
 
+
 def input_number(message):
     """숫자를 입력받아 돌려준다. 숫자가 아니면 다시 입력받는다."""
     while True:
@@ -78,6 +79,7 @@ def make_sample_data():
 
 # ===== 클래스 =====
 
+
 class Theater:
     """상영관 (부모 클래스)"""
 
@@ -135,18 +137,30 @@ class Theater:
 class NormalTheater(Theater):
     """일반관: 기본 가격 그대로"""
 
+    def __init__(self, number, movie, price):
+        super().__init__(number, movie, price)
+        # TODO:
+
     def __str__(self):
-        return f"[일반] {self.number}관 - {self.movie} ({format_price(self.get_price())})"
+        return (
+            f"[일반] {self.number}관 - {self.movie} ({format_price(self.get_price())})"
+        )
 
 
 class VIPTheater(Theater):
     """VIP관: 기본 가격 + 5,000원"""
 
-    def get_price(self):                 # 부모 메서드를 다르게 동작 (오버라이딩)
+    def __init__(self, number, movie, price):
+        super().__init__(number, movie, price)
+        # TODO:
+
+    def get_price(self):  # 부모 메서드를 다르게 동작 (오버라이딩)
         return self._price + 5000
 
     def __str__(self):
-        return f"[VIP] {self.number}관 - {self.movie} ({format_price(self.get_price())})"
+        return (
+            f"[VIP] {self.number}관 - {self.movie} ({format_price(self.get_price())})"
+        )
 
 
 class Cinema:
@@ -282,6 +296,7 @@ class Cinema:
 
 
 # ===== 실행 =====
+
 
 def main():
     cinema = make_sample_data()
